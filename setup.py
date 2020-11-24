@@ -4,6 +4,7 @@ from setuptools import setup
 from hstest.constants import package_name, __version__
 
 core_branch = os.getenv("CORE_BRANCH", "master")
+# core_branch = os.getenv("CORE_BRANCH",'CORE-22-add-augmentation-to-image-classi')
 REQUIRED_PACKAGES = ['brevetti-ai @ git+https://bitbucket.org/criterionai/core@' + core_branch]
 
 setup(
