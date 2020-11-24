@@ -1,1 +1,0 @@
-brevetti-ai@ git+https://bitbucket.org/criterionai/core@CORE-22-add-augmentation-to-image-classi
