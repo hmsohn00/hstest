@@ -4,7 +4,7 @@ from setuptools import setup
 from hstest.constants import package_name, __version__
 
 core_branch = os.getenv("CORE_BRANCH", "master")
-REQUIRED_PACKAGES = ['brevetti-ai @ git+https://bitbucket.org/criterionai/core@' + core_branch]
+REQUIRED_PACKAGES = ['brevetti-ai @ git+https://git@bitbucket.org/criterionai/core.git@' + core_branch]
 
 setup(
     name=package_name,
