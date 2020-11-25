@@ -1,6 +1,6 @@
 FROM tensorflow/tensorflow:2.3.0-gpu
 
-WORKDIR /
+WORKDIR /criterion
 
 ARG build_number=-1
 ENV BUILD_NUMBER=$build_number
