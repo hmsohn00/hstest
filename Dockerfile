@@ -7,7 +7,7 @@ ENV BUILD_NUMBER=$build_number
 
 RUN apt-get update && apt-get install -y git libsm6 libxext6 libxrender-dev
 
-ARG criterionai_core_path='https://bitbucket.org/criterionai/'
+ARG criterionai_core_path='https://bitbucket.org/criterionai/core/'
 COPY $criterionai_core_path core/
 
 ARG criterionai_app_path=hstest/hstest
