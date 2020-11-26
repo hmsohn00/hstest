@@ -61,7 +61,7 @@ class Hstest(Job):
         # pd dataframe
         full_set = get_image_samples(self.datasets, category_map=settings.class_mapping,
                                      force_categories=settings.classes or False)
-        full_set = SampleSplit().assign(full_set, id_path=self.artifact_path("sample_identification.csv"))
+        full_set = SampleSplit().assign(full_set, purpose='train', remainder='devel')
 
         # divide samples into train/test set
         train_set = full_set.loc[full_set.purpose == 'train']
