@@ -13,7 +13,7 @@ COPY $criterionai_core_path core/
 ARG criterionai_app_path=hstest/hstest
 COPY $criterionai_app_path $criterionai_app_path/
 
-RUN pip install -e core[cv2-headless,tf2-gpu]
+RUN pip install -e core[tf2-gpu]
 RUN pip install -e $criterionai_app_path
 
 # Sets up the entry point to invoke the trainer.
