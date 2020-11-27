@@ -12,6 +12,12 @@ from . import data
 
 log = logging.getLogger(__name__)
 
+COLOR_CHANNELS = {
+    "greyscale": 1,
+    "bayer": 3,
+    "rgb": 3
+}
+
 
 class Hstest(Job):
     class Settings(vue.VueSettingsModule):
@@ -101,7 +107,8 @@ class Hstest(Job):
 
         # define the model
         model = tf.keras.Sequential([
-            tf.keras.layers.Conv2D(16, (3, 3), activation='relu', input_shape=(128, 128, 1)),
+            tf.keras.layers.Conv2D(16, (3, 3), activation='relu',
+                                   input_shape=(128, 128, COLOR_CHANNELS[settings.image.color_mode])),
             tf.keras.layers.MaxPooling2D(),
             tf.keras.layers.Conv2D(32, (3, 3), activation='relu'),
             tf.keras.layers.MaxPooling2D(),
@@ -113,6 +120,7 @@ class Hstest(Job):
         model.compile(optimizer=tf.keras.optimizers.Adam(lr=1e-7),
                       loss='categorical_crossentropy',
                       metrics=['accuracy'])
+        print('input image shape: [128, 128,', COLOR_CHANNELS[settings.image.color_mode], ']')
         model.summary()
 
         tensorboard = self.temp_path("tensorboard", self.run_id, dir=True)
