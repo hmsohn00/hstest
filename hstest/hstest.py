@@ -37,7 +37,7 @@ class Hstest(Job):
         def get_schema(cls, namespace=None):
             builder = super().get_schema(namespace)
             # This is for user - other settings are set to default value
-            builder.filter_fields([
+            used_fields = [
                 vue.label("Image Pipeline"),
                 "image.input_width",
                 "image.input_height",
@@ -58,7 +58,8 @@ class Hstest(Job):
                 "epochs",
                 "batch_size",
                 "learning_rate"
-            ])
+            ]
+            builder.filter_fields(incl_fields=used_fields, make_visible=used_fields)
             return builder
 
     settings: Settings
