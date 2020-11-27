@@ -23,13 +23,14 @@ class Hstest(Job):
     class Settings(vue.VueSettingsModule):
         def __init__(self, image: ImagePipeline, augmenter: ImageAugmenter,
                      classes: list = None, class_mapping: dict = None,
-                     epochs=30, batch_size=8, augmenter_enable=True):
+                     epochs=30, batch_size=8, learning_rate=1e-3, augmenter_enable=True):
             self.image = image
             self.augmenter = augmenter
             self.classes = classes or []
             self.class_mapping = class_mapping or {}
             self.epochs = epochs
             self.batch_size = batch_size
+            self.learning_rate = learning_rate
             self.augmenter_enable = augmenter_enable
 
         @classmethod
@@ -56,6 +57,7 @@ class Hstest(Job):
                 "class_mapping",
                 "epochs",
                 "batch_size",
+                "learning_rate"
             ])
             return builder
 
@@ -117,7 +119,7 @@ class Hstest(Job):
             tf.keras.layers.Flatten(),
             tf.keras.layers.Dense(len(classes), activation='softmax')
         ])
-        model.compile(optimizer=tf.keras.optimizers.Adam(lr=1e-7),
+        model.compile(optimizer=tf.keras.optimizers.Adam(lr=settings.learning_rate),
                       loss='categorical_crossentropy',
                       metrics=['accuracy'])
         print('input image shape: [128, 128,', COLOR_CHANNELS[settings.image.color_mode], ']')
