@@ -1,6 +1,6 @@
 import os
 
-__version__ = "0.2"
+__version__ = "0.3"
 
 package_path = os.path.realpath(os.path.join(os.path.realpath(__file__), os.pardir))
 package_name = os.path.basename(package_path)
